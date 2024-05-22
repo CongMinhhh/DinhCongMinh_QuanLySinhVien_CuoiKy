@@ -1,0 +1,68 @@
+﻿@model DinhCongMinh_QuanLySinhVien_CuoiKy.Models.Truong
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 style="font-weight: bold; text-align: center">XOÁ THÔNG TIN SINH VIÊN - LỚP HỌC PHẦN</h2>
+
+<h3 style="font-weight: bold; color: red;">Bạn có chắc là bạn muốn xoá dòng dữ liệu này không?</h3>
+
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-8 col-md-offset-3">
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TenTruong)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenTruong)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Gmail)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Gmail)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SDT)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SDT)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DiaChi)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.DiaChi)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> 
+                    </div>
+                }
+                <p>
+                    @using (Html.BeginForm("Index", "Truong", FormMethod.Get))
+                    {
+                        <button type="submit" class="btn btn-primary" style="margin-left: 30%;">Trở về danh sách trường</button>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

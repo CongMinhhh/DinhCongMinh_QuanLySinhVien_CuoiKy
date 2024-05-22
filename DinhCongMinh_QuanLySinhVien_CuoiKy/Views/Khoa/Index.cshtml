@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DinhCongMinh_QuanLySinhVien_CuoiKy.Models.Khoa>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="font-weight: bold; text-align: center">QUẢN LÝ KHOA</h2>
+
+<p>
+    @using (Html.BeginForm("Create", "Khoa", FormMethod.Get))
+    {
+        <button type="submit" class="btn btn-primary">Thêm Mới</button>
+    }
+</p>
+<div class="form-inline mb-3">
+    @using (Html.BeginForm("Index", "Khoa", FormMethod.Get))
+    {
+        <div class="form-group">
+            @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Tìm theo mã khoa" })
+            @Html.TextBox("searchName", ViewBag.CurrentNameFilter as string, new { @class = "form-control", placeholder = "Tìm theo tên khoa" })
+            @Html.TextBox("searchMaT", ViewBag.CurrentMaLSHFilter as string, new { @class = "form-control", placeholder = "Tìm theo mã trường" })
+            <button type="submit" class="btn btn-primary">Tìm</button>
+        </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaKhoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenKhoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaTruong)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaKhoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenKhoa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaTruong)
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Khoa", new { id = item.MaKhoa })'">Sửa</button>
+            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", "Khoa", new { id = item.MaKhoa })'">Xem chi tiết</button>
+            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Khoa", new { id = item.MaKhoa })'">Xoá</button>
+        </td>
+    </tr>
+}
+
+</table>

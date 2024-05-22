@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DinhCongMinh_QuanLySinhVien_CuoiKy.Models.GiaoVien>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2 style="font-weight: bold; text-align: center">QUẢN LÝ GIÁO VIÊN</h2>
+
+<p>
+    @using (Html.BeginForm("Create", "GiaoVien", FormMethod.Get))
+    {
+        <button type="submit" class="btn btn-primary">Thêm Mới</button>
+    }
+</p>
+<div class="form-inline mb-3">
+    @using (Html.BeginForm("Index", "GiaoVien", FormMethod.Get))
+    {
+        <div class="form-group">
+            @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Tìm theo mã giáo viên" })
+            @Html.TextBox("searchName", ViewBag.CurrentNameFilter as string, new { @class = "form-control", placeholder = "Tìm theo tên giáo viên" })
+            @Html.TextBox("searchMaKhoa", ViewBag.CurrentMaKhoaFilter as string, new { @class = "form-control", placeholder = "Tìm theo mã khoa" })
+            <button type="submit" class="btn btn-primary">Tìm</button>
+        </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaGV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenGiaoVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaKhoa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaGV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenGiaoVien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaKhoa)
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "GiaoVien", new { id = item.MaGV })'">Sửa</button>
+            <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", "GiaoVien", new { id = item.MaGV })'">Xem chi tiết</button>
+            <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "GiaoVien", new { id = item.MaGV })'">Xoá</button>
+        </td>
+    </tr>
+}
+
+</table>

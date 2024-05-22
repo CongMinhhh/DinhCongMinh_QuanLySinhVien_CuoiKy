@@ -1,0 +1,66 @@
+﻿@model DinhCongMinh_QuanLySinhVien_CuoiKy.Models.SV_LHP
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+<h2 style="font-weight: bold; text-align: center">CHỈNH SỬA THÔNG TIN SINH VIÊN</h2>
+
+
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-8 col-md-offset-3">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaLHP)
+
+                @Html.HiddenFor(model => model.MaSV)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MaLHP, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.MaLHP, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MaSV, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.MaSV, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.DiemHocPhan, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DiemHocPhan, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DiemHocPhan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+            }
+
+        <p>
+            @using (Html.BeginForm("Index", "SV_LHP", FormMethod.Get))
+            {
+                <button type="submit" class="btn btn-primary" style="margin-left: 30%;">Trở về danh sách</button>
+            }
+        </p>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }
+        </div>
+    </div>
+</div>

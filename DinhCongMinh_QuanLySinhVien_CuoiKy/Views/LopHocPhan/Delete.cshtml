@@ -1,0 +1,82 @@
+﻿@model DinhCongMinh_QuanLySinhVien_CuoiKy.Models.LopHocPhan
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 style="font-weight: bold; text-align: center">XOÁ THÔNG TIN LỚP HỌC PHẦN</h2>
+
+<h3 style="font-weight: bold; color: red;">Bạn có chắc là bạn muốn xoá dòng dữ liệu này không?</h3>
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-8 col-md-offset-3">
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MaLHP)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MaLHP)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TenLHP)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenLHP)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SoLuong)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SoLuong)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SoTinChi)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SoTinChi)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NgayBatDau)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NgayBatDau)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MaGV)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MaGV)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="id" value="@Model.MaLHP" />
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                    </div>
+                }
+                <p>
+                    @using (Html.BeginForm("Index", "LopHocPhan", FormMethod.Get))
+                    {
+                        <button type="submit" class="btn btn-primary" style="margin-left: 30%;">Trở về danh sách lớp học phần</button>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

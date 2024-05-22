@@ -1,0 +1,91 @@
+﻿@model DinhCongMinh_QuanLySinhVien_CuoiKy.Models.SinhVien
+
+@{
+    ViewBag.Title = "Delete";
+}
+<h2 style="font-weight: bold; text-align: center">XOÁ THÔNG TIN SINH VIÊN</h2>
+
+<h3 style="font-weight: bold; color: red;">Bạn có chắc là bạn muốn xoá dòng dữ liệu này không?</h3>
+
+<div class="container">
+    <div class="row justify-content-center ">
+        <div class="col-md-8 col-md-offset-3">
+            <div>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TenSinhVien)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.TenSinhVien)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NgaySinh)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.NgaySinh)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.GioiTinh)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.GioiTinh)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.QueQuan)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.QueQuan)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SDT)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.SDT)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Gmail)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.Gmail)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MaLSH)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.MaLSH)
+                    </dd>
+
+                </dl>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="id" value="@Model.MaSV" />
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                    </div>
+                }
+                <p>
+                    @using (Html.BeginForm("Index", "SinhVien", FormMethod.Get))
+                    {
+                        <button type="submit" class="btn btn-primary" style="margin-left: 30%;">Trở về danh sách sinh viên</button>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

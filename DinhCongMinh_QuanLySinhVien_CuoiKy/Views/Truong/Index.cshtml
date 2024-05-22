@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DinhCongMinh_QuanLySinhVien_CuoiKy.Models.Truong>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="font-weight: bold; text-align: center">QUẢN LÝ TRƯỜNG ĐẠI HỌC</h2>
+
+<p>
+    @using (Html.BeginForm("Create", "Truong", FormMethod.Get))
+    {
+        <button type="submit" class="btn btn-primary">Thêm Mới</button>
+    }
+</p>
+<div class="form-inline mb-3">
+    @using (Html.BeginForm("Index", "Truong", FormMethod.Get))
+    {
+        <div class="form-group">
+            @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Tìm theo mã trường" })
+            @Html.TextBox("searchName", ViewBag.CurrentNameFilter as string, new { @class = "form-control", placeholder = "Tìm theo tên trường" })
+            <button type="submit" class="btn btn-primary">Tìm</button>
+        </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaTruong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenTruong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaTruong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenTruong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "Truong", new { id = item.MaTruong })'">Sửa</button>
+                <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", "Truong", new { id = item.MaTruong })'">Xem chi tiết</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Truong", new { id = item.MaTruong })'">Xoá</button>
+            </td>
+        </tr>
+    }
+
+</table>

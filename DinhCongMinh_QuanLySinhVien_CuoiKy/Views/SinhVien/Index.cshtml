@@ -1,0 +1,72 @@
+﻿@model IEnumerable<DinhCongMinh_QuanLySinhVien_CuoiKy.Models.SinhVien>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="font-weight: bold; text-align: center">QUẢN LÝ SINH VIÊN</h2>
+
+<p>
+    @using (Html.BeginForm("Create", "SinhVien", FormMethod.Get))
+    {
+        <button type="submit" class="btn btn-primary">Thêm Mới</button>
+    }
+</p>
+<div class="form-inline mb-3">
+    @using (Html.BeginForm("Index", "SinhVien", FormMethod.Get))
+    {
+    <div class="form-group">
+        @Html.TextBox("searchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Tìm theo mã sinh viên" })
+        @Html.TextBox("searchName", ViewBag.CurrentNameFilter as string, new { @class = "form-control", placeholder = "Tìm theo tên sinh viên" })
+        @Html.DropDownList("genderFilter", new SelectList(new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Tất cả", Value = "" },
+            new SelectListItem { Text = "Nam", Value = "Nam" },
+            new SelectListItem { Text = "Nữ", Value = "Nữ" }
+        }, "Value", "Text", ViewBag.CurrentGenderFilter), new { @class = "form-control" })
+        @Html.TextBox("searchMaLSH", ViewBag.CurrentMaLSHFilter as string, new { @class = "form-control", placeholder = "Tìm theo mã lớp sinh hoạt" })
+        <button type="submit" class="btn btn-primary">Tìm</button>
+    </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaSV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenSinhVien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaLSH)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaSV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenSinhVien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioiTinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaLSH)
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Edit", "SinhVien", new { id = item.MaSV })'">Sửa</button>
+                <button type="button" class="btn btn-info" onclick="location.href='@Url.Action("Details", "SinhVien", new { id = item.MaSV })'">Xem chi tiết</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "SinhVien", new { id = item.MaSV })'">Xoá</button>
+            </td>
+        </tr>
+    }
+
+</table>
